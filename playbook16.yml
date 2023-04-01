@@ -1,0 +1,16 @@
+---
+- name: Check uf folder f1 is present if not create a file f1
+  hosts: all
+  tasks:
+    - name: Check for folder f1
+      stat:
+        path: f1
+      register: a
+    - name: Display output of the above module
+      debug:
+        var: a
+    - name: Create f1 file if f1 folder is not present
+      file:
+        name: f1
+        state: touch
+      when: a.stat.exists == false

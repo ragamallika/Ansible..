@@ -1,0 +1,19 @@
+---
+- name: Implementing tags
+  hosts: all
+  tasks:
+    - name: Install tree
+      apt:
+        name: tree
+        state: present
+        update_cache: no
+      tags: tree_installation
+    - name: Create a user
+      user:
+        name: ant
+        password: apple
+      tags: user_creation
+    - name: Copy passwd file
+      copy:
+        src: /etc/passwd
+        dest: /tmp

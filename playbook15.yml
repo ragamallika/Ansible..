@@ -1,0 +1,15 @@
+---
+- name: Implementing when conditions
+  hosts: all
+  gather_facts: false
+  become: yes
+  vars:
+    - a: 20
+  tasks:
+    - name: Create a file
+      file:
+        name: /tmp/file1
+        state: touch
+        owner: root
+        mode: 770
+      when: a == 10 
